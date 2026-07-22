@@ -49,12 +49,12 @@
   }
 }
 
-/* jkwon.co 1:1 Layout Classes */
+/* jkwon.co 1:1 Vertically Centered Layout */
 .home-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   min-height: 100vh;
   width: 100%;
 }
@@ -62,24 +62,22 @@
 .home-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   max-width: 90vw;
   width: 100%;
-  padding: 40px 20px;
+  padding: 20px;
   gap: 60px;
   font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
 }
 
-/* Left Sidebar - Fixed / Sticky Position */
+/* Left Sidebar - Centered & Fixed Height */
 .home-container .sidebar {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
   min-width: 200px;
-  position: sticky;
-  top: 40px;
-  align-self: flex-start;
+  align-self: center;
   height: fit-content;
   flex-shrink: 0;
 }
@@ -128,28 +126,30 @@
   font-weight: 600;
 }
 
-/* Center Main Page Content */
+/* Center Main Page Content - Scrollable Fixed Viewport Measure */
 .home-container main.page-content {
   flex: 1;
   min-width: 0;
-  min-height: 65vh;
+  height: 70vh;
+  min-height: 70vh;
+  max-height: 75vh;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  overflow-y: auto;
+  padding-right: 12px;
   font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
 }
 
-/* Right News Sidebar - Fixed / Sticky Position */
+/* Right News Sidebar - Centered & Fixed Height */
 .home-container .news {
   width: 240px;
   min-width: 220px;
   text-align: left;
   font-size: 15px;
-  position: sticky;
-  top: 40px;
-  align-self: flex-start;
+  align-self: center;
   height: fit-content;
   flex-shrink: 0;
 }
@@ -197,8 +197,6 @@
     max-width: 100vw;
   }
   .home-container .sidebar {
-    position: relative;
-    top: 0;
     width: 100%;
     border-b: 1px solid var(--border-color);
     padding-bottom: 16px;
@@ -210,11 +208,12 @@
   }
   .home-container main.page-content {
     width: 100%;
+    height: auto;
     min-height: auto;
+    max-height: none;
+    overflow-y: visible;
   }
   .home-container .news {
-    position: relative;
-    top: 0;
     width: 100%;
     border-t: 1px solid var(--border-color);
     padding-top: 20px;
