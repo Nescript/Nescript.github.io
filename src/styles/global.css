@@ -49,7 +49,7 @@
   }
 }
 
-/* Horizontally and Vertically Centered Layout (No news column) */
+/* Horizontally and Vertically Centered Fluid Layout */
 .home-wrapper {
   display: flex;
   flex-direction: column;
@@ -65,13 +65,13 @@
   align-items: center;
   max-width: 900px;
   width: 100%;
-  padding: 20px;
+  padding: 40px 20px;
   gap: 60px;
   margin: 0 auto;
   font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
 }
 
-/* Left Sidebar - Centered & Fixed Height */
+/* Left Sidebar - Centered & Flexible */
 .home-container .sidebar {
   display: flex;
   flex-direction: column;
@@ -127,20 +127,18 @@
   font-weight: 600;
 }
 
-/* Center Main Page Content - Scrollable Fixed Viewport Measure */
+/* Center Main Page Content - Fluid Unfixed Natural Height */
 .home-container main.page-content {
   flex: 1;
   min-width: 0;
-  height: 70vh;
-  min-height: 70vh;
-  max-height: 75vh;
+  height: auto;
+  min-height: auto;
+  max-height: none;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  overflow-y: auto;
-  padding-right: 12px;
   font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
 }
 
@@ -168,7 +166,6 @@
     height: auto;
     min-height: auto;
     max-height: none;
-    overflow-y: visible;
   }
 }
 
