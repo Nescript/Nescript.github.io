@@ -23,7 +23,7 @@ const words = post.body.trim().split(/\s+/).length;
 const readingTime = Math.ceil(words / 200);
 ---
 
-<Layout title={`${post.data.title} — Nesc`} description={post.data.description}>
+<Layout title={`${post.data.title} — Nescript`} description={post.data.description}>
   <div class="relative grid grid-cols-1 xl:grid-cols-[1fr_220px] gap-10 items-start w-full">
     <article class="w-full min-w-0">
       <!-- Back Link -->
@@ -50,7 +50,7 @@ const readingTime = Math.ceil(words / 200);
       </header>
 
       <!-- Markdown Article Body - Spacious Reading Measure -->
-      <div class="prose dark:prose-invert prose-zinc max-w-none text-base leading-relaxed text-zinc-800 dark:text-zinc-200">
+      <div class="prose dark:prose-invert prose-zinc max-w-none text-sm leading-relaxed text-zinc-800 dark:text-zinc-200">
         <Content />
       </div>
     </article>

@@ -1,52 +1,68 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+// 构建时获取最新漫画编号（服务端，无 CORS 限制）
+let maxComic = 3050;
+try {
+  const res = await fetch('https://xkcd.com/info.0.json');
+  if (res.ok) {
+    const data = await res.json();
+    maxComic = data.num;
+  }
+} catch (_) {}
 ---
 
-<Layout title="Nesc — 软件与机器人">
-  <div class="space-y-8 w-full">
-    <!-- Bio Intro -->
-    <div class="space-y-3">
-      <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-        软件工程师 & 机器人研究员
-      </h2>
-      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
-        专注于 C++20 轨迹规划算法、实时状态估计（EKF/UKF）与极简 Web 系统架构。致力于高精尖工程实现与极简美学的融合。
-      </p>
+<Layout title="Nescript — Home">
+  <div class="flex flex-col items-center justify-center space-y-4 w-full">
+    <div data-center-target id="comic-container" class="p-3 border border-zinc-200/80 dark:border-zinc-800/80 rounded-xl bg-white dark:bg-zinc-900/50 shadow-sm max-w-xl">
+      <img
+        id="comic-img"
+        src="/images/xkcd_grownups.png"
+        alt="xkcd"
+        class="w-full max-w-xl h-auto rounded-lg"
+      />
     </div>
-
-    <!-- Quick Overview / Latest Thoughts -->
-    <div class="space-y-4 pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60">
-      <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100">
-        最新文章 (Writing)
-      </h3>
-
-      <div class="space-y-3">
-        {posts.map((post) => (
-          <div class="space-y-1">
-            <div class="flex items-baseline justify-between">
-              <a
-                href={`/posts/${post.slug}`}
-                class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                {post.data.title}
-              </a>
-              <span class="text-xs font-mono text-zinc-400">
-                {post.data.date.toISOString().split('T')[0]}
-              </span>
-            </div>
-            {post.data.description && (
-              <p class="text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">
-                {post.data.description}
-              </p>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+    <span id="comic-caption" class="text-xs font-mono text-zinc-400">
+      Comic from <a href="https://xkcd.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">xkcd</a>
+    </span>
   </div>
 </Layout>
+
+<script define:vars={{ maxComic }}>
+  function loadDailyComic() {
+    const img = document.getElementById('comic-img');
+    const caption = document.getElementById('comic-caption');
+    if (!img || !caption) return;
+
+    /* 用今天的日期生成固定种子，同一天始终显示同一幅漫画 */
+    const today = new Date();
+    const daySeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+
+    /* 简单正弦哈希伪随机 */
+    const x = Math.sin(daySeed + 1) * 10000;
+    const rand = x - Math.floor(x);
+    const comicNum = Math.floor(rand * (maxComic - 1)) + 1;
+
+    /* 通过 CORS 代理获取漫画元数据 */
+    fetch('https://corsproxy.io/?' + encodeURIComponent('https://xkcd.com/' + comicNum + '/info.0.json'))
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => {
+        img.src = data.img;
+        img.alt = data.alt || data.title;
+        img.title = data.alt || '';
+        caption.innerHTML =
+          '<a href="https://xkcd.com/' + comicNum + '/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">#' + comicNum + ': ' + data.title + '</a>' +
+          ' — from <a href="https://xkcd.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">xkcd</a>';
+
+        /* 图片加载后重新计算居中 */
+        img.onload = () => {
+          if (typeof centerContent === 'function') centerContent();
+        };
+      })
+      .catch(() => {
+        /* 加载失败时保留默认 grownups 图片 */
+      });
+  }
+
+  document.addEventListener('astro:page-load', loadDailyComic);
+</script>

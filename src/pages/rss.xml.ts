@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 export async function GET(context: any) {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return rss({
-    title: 'Nesc | Blog',
+    title: 'Nescript | Blog',
     description: 'Articles on software engineering, robotics, math, and design.',
     site: context.site,
     items: posts.map((post) => ({

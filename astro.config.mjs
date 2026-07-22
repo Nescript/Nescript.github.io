@@ -4,7 +4,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
-  site: 'https://nesc.github.io',
+  site: 'https://nescript.github.io',
   base: '/',
   integrations: [
     tailwind({

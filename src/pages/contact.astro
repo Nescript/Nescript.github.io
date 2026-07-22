@@ -2,68 +2,60 @@
 import Layout from '../layouts/Layout.astro';
 
 const contactInfo = {
-  email: 'nesc@example.com',
-  github: 'https://github.com/nesc',
-  location: 'Hangzhou / Remote',
+  email: 'raymond059@mails.edu.gdut.cn',
+  github: 'https://github.com/nescript',
+  githubUser: 'nescript',
+  location: 'Guangzhou, China',
 };
 ---
 
-<Layout title="Contact — Nesc" description="Contact details, email, and GitHub profile of Nesc.">
-  <div class="space-y-8 w-full max-w-lg">
-    <!-- Section Title -->
-    <div class="space-y-2 border-b border-zinc-200/60 dark:border-zinc-800/60 pb-4">
-      <h2 class="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-        Contact / 联系方式
-      </h2>
-      <p class="text-xs text-zinc-500 dark:text-zinc-400">
-        欢迎交流学术研究、机器人项目与技术合作
+<Layout title="Contact — Nescript" description="Contact details and profiles for Nescript.">
+  <div class="space-y-6 w-full max-w-prose">
+    <div class="space-y-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 font-serif">
+      <p>
+        Feel free to reach out for research discussions, open-source collaborations, or software projects.
       </p>
-    </div>
 
-    <!-- Standalone Contact Card Showcase -->
-    <div class="p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 space-y-6">
-      <!-- Email Box -->
-      <div class="space-y-2">
-        <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider font-semibold">
-          电子邮箱 (Email)
-        </span>
-        <div class="flex items-center justify-between p-3 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-white dark:bg-zinc-900">
-          <a href={`mailto:${contactInfo.email}`} class="text-sm font-mono font-medium text-blue-600 dark:text-blue-400 hover:underline">
-            {contactInfo.email}
-          </a>
-          <button
-            id="copy-email-btn"
-            data-email={contactInfo.email}
-            class="px-2.5 py-1 text-xs font-mono rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-          >
-            复制 (Copy)
-          </button>
+      <div class="pt-2 space-y-3 font-sans">
+        <!-- Email Item -->
+        <div class="flex items-center justify-between py-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider">Email</span>
+          <div class="flex items-center gap-3">
+            <a
+              href={`mailto:${contactInfo.email}`}
+              class="text-sm font-mono text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              {contactInfo.email}
+            </a>
+            <button
+              id="copy-email-btn"
+              data-email={contactInfo.email}
+              class="px-2 py-0.5 text-xs font-mono rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            >
+              Copy
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- GitHub Link Box -->
-      <div class="space-y-2">
-        <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider font-semibold">
-          GitHub 主页
-        </span>
-        <div class="p-3 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-white dark:bg-zinc-900 flex items-center justify-between">
+        <!-- GitHub Item -->
+        <div class="flex items-center justify-between py-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider">GitHub</span>
           <a
             href={contactInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm font-mono font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1.5"
+            class="text-sm font-mono text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
           >
-            <span>{contactInfo.github}</span>
+            <span>@{contactInfo.githubUser}</span>
             <span class="text-xs">↗</span>
           </a>
-          <span class="text-xs text-zinc-400 font-mono">@nesc</span>
         </div>
-      </div>
 
-      <!-- Location Note -->
-      <div class="pt-2 border-t border-zinc-200/50 dark:border-zinc-800/50 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
-        <span>城市 / 状态:</span>
-        <span class="font-medium text-zinc-700 dark:text-zinc-300">{contactInfo.location}</span>
+        <!-- Location Item -->
+        <div class="flex items-center justify-between py-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider">Location</span>
+          <span class="text-sm font-mono text-zinc-600 dark:text-zinc-400">{contactInfo.location}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -80,18 +72,19 @@ const contactInfo = {
 
       try {
         await navigator.clipboard.writeText(email);
-        copyBtn.innerText = '已复制!';
+        copyBtn.innerText = 'Copied!';
         copyBtn.classList.add('bg-emerald-500', 'text-white');
         setTimeout(() => {
-          copyBtn.innerText = '复制 (Copy)';
+          copyBtn.innerText = 'Copy';
           copyBtn.classList.remove('bg-emerald-500', 'text-white');
         }, 2000);
       } catch (e) {
-        copyBtn.innerText = '失败';
+        copyBtn.innerText = 'Failed';
       }
     });
   }
 
   setupCopyEmail();
   document.addEventListener('astro:after-swap', setupCopyEmail);
+  document.addEventListener('astro:page-load', setupCopyEmail);
 </script>

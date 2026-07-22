@@ -8,22 +8,22 @@ interface Props {
 }
 
 const {
-  title = "Nesc — Software & Robotics",
-  description = "Nesc's personal site & blog on software engineering, robotics, and minimalist design.",
+  title = "Nescript — Software & Robotics",
+  description = "Nescript's personal site & blog on software engineering, robotics, and minimalist design.",
 } = Astro.props;
 
 const pathname = new URL(Astro.request.url).pathname;
 
 // Dynamic Header Title
 function getHeaderTitle(path: string) {
-  if (path === '/' || path === '') return 'Nesc';
+  if (path === '/' || path === '') return 'Nescript';
   if (path.startsWith('/about')) return 'About';
   if (path.startsWith('/projects')) return 'Projects';
   if (path.startsWith('/posts')) return 'Writing';
   if (path.startsWith('/timeline')) return 'Timeline';
   if (path.startsWith('/contact')) return 'Contact';
   if (path.startsWith('/gear')) return 'Gear';
-  return 'Nesc';
+  return 'Nescript';
 }
 
 const headerTitle = getHeaderTitle(pathname);
@@ -52,11 +52,11 @@ const navItems = [
     <meta name="title" content={title} />
     <meta name="description" content={description} />
 
-    <!-- Google Fonts (Newsreader Serif + Noto Sans SC 思源黑体 + JetBrains Mono) -->
+    <!-- Google Fonts (EB Garamond + Noto Serif SC 思源宋体 + JetBrains Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Serif+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -67,7 +67,7 @@ const navItems = [
     <div class="home-wrapper">
       <div class="home-container">
         <!-- Left Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" transition:persist>
           <header class="flex items-center justify-between w-full">
             <h1>
               <a href="/" class="hover:opacity-80 transition-opacity">{headerTitle}</a>
@@ -96,5 +96,71 @@ const navItems = [
         </main>
       </div>
     </div>
+
+    <script>
+      function updateSidebarState() {
+        const pathname = window.location.pathname;
+
+        // 1. Update Header Title (Home -> Nesc, Writing -> Writing, etc.)
+        const headerLink = document.querySelector('.home-container .sidebar header h1 a');
+        if (headerLink) {
+          let title = 'Nescript';
+          if (pathname.startsWith('/about')) title = 'About';
+          else if (pathname.startsWith('/projects')) title = 'Projects';
+          else if (pathname.startsWith('/posts')) title = 'Writing';
+          else if (pathname.startsWith('/timeline')) title = 'Timeline';
+          else if (pathname.startsWith('/contact')) title = 'Contact';
+          else if (pathname.startsWith('/gear')) title = 'Gear';
+
+          headerLink.textContent = title;
+        }
+
+        // 2. Update Active Nav Class
+        const navLinks = document.querySelectorAll('.home-container nav ul li a');
+        navLinks.forEach((link) => {
+          const href = link.getAttribute('href');
+          if (!href) return;
+
+          const isActive =
+            href === '/'
+              ? pathname === '/' || pathname === ''
+              : pathname.startsWith(href);
+
+          if (isActive) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      document.addEventListener('astro:page-load', updateSidebarState);
+
+      /* ---- 右侧容器动态垂直居中 ---- */
+      function centerContent() {
+        const content = document.querySelector('main.page-content');
+        if (!content) return;
+
+        const vh = window.innerHeight;
+        const centerTarget = content.querySelector('[data-center-target]');
+        const contentH = centerTarget ? centerTarget.offsetHeight : content.scrollHeight;
+        const padding = 80; /* 上下安全留白 */
+
+        if (contentH + padding * 2 >= vh) {
+          /* 内容超高，不居中，与左侧导航栏保持同一基线 */
+          content.style.marginTop = '';
+        } else {
+          /* Home 页用光学中心偏上 (2.5)，其他页面用数学中心 (2) */
+          const isHome = window.location.pathname === '/' || window.location.pathname === '';
+          const divisor = isHome ? 2.5 : 2;
+          const offset = Math.max(0, (vh - contentH) / divisor - padding);
+          content.style.marginTop = offset + 'px';
+        }
+      }
+
+      document.addEventListener('astro:page-load', centerContent);
+      window.addEventListener('resize', centerContent);
+      window.centerContent = centerContent;
+    </script>
   </body>
 </html>

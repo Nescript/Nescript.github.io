@@ -27,6 +27,8 @@
   }
 
   html {
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
     scroll-behavior: smooth;
     background-color: var(--bg-color);
     color: var(--text-primary);
@@ -35,8 +37,25 @@
   }
 
   /* English: Newsreader / IM Fell English, Chinese: Noto Sans SC (思源黑体) */
-  body, h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea {
-    font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif !important;
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  span,
+  button,
+  input,
+  select,
+  textarea {
+    font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+  }
+
+  html {
+    font-size: 18px;
   }
 
   body {
@@ -56,39 +75,41 @@
 .home-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  /* 水平方向绝对居中 */
+  justify-content: flex-start;
+  /* 垂直基线靠顶（防止长短页面位置浮动） */
   min-height: 100vh;
   width: 100%;
-  /* 1. 全站整体左偏距 (可通过调整 5vw ~ 10vw 自定义左边距) */
-  padding-left: clamp(24px, 5vw, 100px);
-  padding-right: 24px;
+  padding: 40px 24px 60px 24px;
   box-sizing: border-box;
 }
 
 .home-container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
-  /* 2. 整体容器最大宽度 (增加最大宽度可让右侧阅读区域更大) */
   max-width: 1200px;
   width: 100%;
-  padding: 40px 0;
-  gap: 50px;
-  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+  margin: 0 auto;
+  gap: clamp(24px, 3.5vw, 50px);
+  font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
 }
 
-/* 3. 左侧导航栏 - 永远固定在左侧 (Sticky Top) */
+/* 3. 左侧导航栏 - 通过 calc() 精确计算屏幕垂直居中 */
 .home-container .sidebar {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  width: 180px;
-  min-width: 180px;
+  width: clamp(160px, 14vw, 220px);
+  min-width: 160px;
   position: sticky;
-  top: 40px;
+  /* 精确计算：视口垂直中心点 50vh 减去导航栏自身半高 (115px) */
+  top: clamp(40px, calc(50vh - 115px), 300px);
+  margin-top: clamp(0px, calc(50vh - 155px), 260px);
+  /* 初始页面加载时计算下推居中 */
   align-self: flex-start;
   height: fit-content;
   flex-shrink: 0;
@@ -97,16 +118,20 @@
 .home-container .sidebar header {
   margin-bottom: 20px;
   width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
 }
 
 .home-container .sidebar h1 {
-  font-size: clamp(26px, 3.5vw, 36px);
+  font-size: clamp(24px, 2.4vw, 32px);
   font-weight: 500;
-  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+  font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
   letter-spacing: -0.01em;
   margin: 0;
-  padding: 0 0 10px 0;
-  line-height: 1.1;
+  padding: 4px 0;
+  line-height: 1.25;
+  white-space: nowrap;
 }
 
 .home-container nav {
@@ -125,8 +150,8 @@
 }
 
 .home-container nav ul li a {
-  font-size: clamp(16px, 1.5vw, 19px);
-  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+  font-size: clamp(18px, 1.7vw, 21px);
+  font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.15s ease;
@@ -143,6 +168,8 @@
   flex: 1;
   min-width: 0;
   width: 100%;
+  margin-top: 0;
+  /* JS 动态计算，基于内容实际高度居中 */
   height: auto;
   min-height: auto;
   max-height: none;
@@ -151,7 +178,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+  font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
 }
 
 /* 移动端自适应 (<= 768px) */
@@ -160,12 +187,14 @@
     padding-left: 16px;
     padding-right: 16px;
   }
+
   .home-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
     padding: 20px 0;
   }
+
   .home-container .sidebar {
     position: relative;
     top: 0;
@@ -173,6 +202,7 @@
     border-b: 1px solid var(--border-color);
     padding-bottom: 16px;
   }
+
   .home-container nav ul {
     display: flex;
     flex-wrap: wrap;
@@ -191,7 +221,8 @@
 }
 
 /* Shiki Code Styling */
-.astro-code, .astro-code * {
+.astro-code,
+.astro-code * {
   font-family: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace !important;
 }
 
@@ -204,6 +235,34 @@
   margin: 1.5rem 0;
   width: 100%;
   overflow-x: auto;
+}
+
+/* Prose Markdown Post & Heading Styling Adjustments */
+.prose h1 {
+  font-size: 1.35rem;
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
+}
+
+.prose h2 {
+  font-size: 1.15rem;
+  margin-top: 1.3em;
+  margin-bottom: 0.5em;
+}
+
+.prose h3 {
+  font-size: 1.02rem;
+  margin-top: 1.1em;
+  margin-bottom: 0.4em;
+}
+
+.prose p, .prose li {
+  font-size: 0.85rem; /* ~15.3px */
+  line-height: 1.7;
+}
+
+.prose code {
+  font-size: 0.78rem;
 }
 
 /* KaTeX custom styling */

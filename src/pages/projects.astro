@@ -3,49 +3,57 @@ import Layout from '../layouts/Layout.astro';
 
 const projects = [
   {
-    title: 'Minimalist Blog Engine',
-    description: 'A static blog template built with Astro, Shiki, KaTeX, and View Transitions.',
-    tech: ['Astro', 'TypeScript', 'Shiki'],
-    link: 'https://github.com/nesc/26blog',
+    title: 'pku-compiler',
+    description: '我正在学习的pku编译原理实践，旨在实现一个从 SysY 编译到 RISC-V 汇编的编译器。我同时在这个项目中探索ai时代的学习方式。',
+    tech: ['C++', 'RISC-V', 'SysY', 'Compiler'],
+    link: 'https://github.com/Nescript/pku-compiler',
+    startDate: '2026-07-14',
   },
   {
-    title: 'Autonomous Robot Trajectory Planner',
-    description: 'Real-time 3D motion planning and minimum-jerk trajectory generator in C++20.',
-    tech: ['C++20', 'ROS 2', 'Eigen'],
-    link: 'https://github.com/nesc',
+    title: 'rm_controllers (refactor branch)',
+    description: '对程序设计架构的探索，我将轮腿控制器的核心算法与 ROS 解耦，便于未来的迁移。',
+    tech: ['C++', 'ROS', 'Control Architecture', 'RoboMaster'],
+    link: 'https://github.com/Nescript/rm_controllers/tree/refactor',
+    startDate: '2026-06-15',
   },
   {
-    title: 'State Estimator EKF Library',
-    description: 'Extended Kalman Filter implementation for IMU, Odometry, and LiDAR sensor fusion.',
-    tech: ['C++', 'State Estimation', 'ROS 2'],
-    link: 'https://github.com/nesc',
+    title: 'balance_car_ws',
+    description: '我的平衡车101，分别实现了串级 PID 控制和 LQR 控制。',
+    tech: ['C++', 'Cascade PID', 'LQR', 'Control Theory'],
+    link: 'https://github.com/Nescript/balance_car_ws',
+    startDate: '2026-01-25',
+  },
+  {
+    title: 'sentry_chassis_controller',
+    description: '我的 ROS 101。在这里我实现了舵轮底盘的控制，包括运动学正逆解算，动力学解算，以及功率计算与控制等功能。',
+    tech: ['ROS Noetic', 'ros_control', 'Kinematics', 'Dynamics'],
+    link: 'https://github.com/Nescript/sentry_chassis_controller',
+    startDate: '2025-11-25',
   },
 ];
 ---
 
-<Layout title="Projects — Nesc" description="Projects built by Nesc.">
-  <div class="space-y-6 w-full">
-    <h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 font-sans border-b border-zinc-200/60 dark:border-zinc-800/60 pb-3">
-      Projects
-    </h2>
-
+<Layout title="Projects — Nescript" description="Projects and engineering practices by Nescript.">
+  <div class="space-y-6 w-full max-w-prose">
     <div class="space-y-5">
       {projects.map((project) => (
-        <div class="space-y-1 border-b border-zinc-200/50 dark:border-zinc-800/50 pb-4">
-          <div class="flex items-baseline justify-between">
+        <div class="space-y-1.5 border-b border-zinc-200/50 dark:border-zinc-800/50 pb-4">
+          <div class="flex items-baseline justify-between gap-2">
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-base font-semibold text-blue-600 dark:text-blue-400 hover:underline font-sans"
+              class="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline font-sans flex items-center gap-1"
             >
-              {project.title} ↗
+              <span>{project.title}</span>
+              <span class="text-xs">↗</span>
             </a>
+            <span class="text-xs font-mono text-zinc-400 shrink-0">{project.startDate}</span>
           </div>
           <p class="text-xs text-zinc-600 dark:text-zinc-400 font-serif leading-relaxed">
             {project.description}
           </p>
-          <div class="flex flex-wrap gap-1.5 pt-1">
+          <div class="flex flex-wrap gap-1.5 pt-0.5">
             {project.tech.map((t) => (
               <span class="text-[10px] font-mono text-zinc-400">#{t}</span>
             ))}

@@ -6,19 +6,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<Layout title="Writing — Nesc" description="Technical writing, math, and robotics thoughts.">
+<Layout title="Writing — Nescript" description="Technical writing, math, and robotics thoughts.">
   <div class="space-y-6 w-full">
-    <h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 font-sans border-b border-zinc-200/60 dark:border-zinc-800/60 pb-3">
-      Writing (Thoughts)
-    </h2>
-
     <div class="divide-y divide-zinc-200/60 dark:divide-zinc-800/60">
       {posts.map((post) => (
         <article class="py-3.5 first:pt-0 last:pb-0">
           <div class="flex items-baseline justify-between gap-2">
             <a
               href={`/posts/${post.slug}`}
-              class="text-base font-semibold text-blue-600 dark:text-blue-400 hover:underline font-sans"
+              class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline font-sans"
             >
               {post.data.title}
             </a>

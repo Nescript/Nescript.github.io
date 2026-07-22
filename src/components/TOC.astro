@@ -16,19 +16,20 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
 ---
 
 {filteredHeadings.length > 0 && (
-  <nav class="toc-container text-xs font-sans tracking-wide">
-    <div class="font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3 px-2">
+  <nav class="toc-container font-sans">
+    <div class="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2 px-2">
       On This Page
     </div>
-    <ul class="space-y-1.5 border-l border-zinc-200 dark:border-zinc-800">
+    <ul class="space-y-1 border-l border-zinc-200 dark:border-zinc-800">
       {filteredHeadings.map((heading) => (
         <li>
           <a
             href={`#${heading.slug}`}
             data-toc-link
             data-heading-id={heading.slug}
-            class={`block py-1 transition-all duration-200 border-l -ml-px ${
-              heading.depth === 3 ? 'pl-6' : 'pl-3'
+            style="font-size: 18px !important; line-height: 1.4; font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', serif !important;"
+            class={`block py-0.5 transition-all duration-200 border-l -ml-px ${
+              heading.depth === 3 ? 'pl-4 text-zinc-400' : 'pl-2.5 font-normal'
             } text-zinc-500 dark:text-zinc-400 border-transparent hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-500`}
           >
             {heading.text}
