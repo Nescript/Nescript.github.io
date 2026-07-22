@@ -23,15 +23,15 @@ const words = post.body.trim().split(/\s+/).length;
 const readingTime = Math.ceil(words / 200);
 ---
 
-<Layout title={`${post.data.title} — nesc`} description={post.data.description}>
-  <div class="relative grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-10 items-start">
+<Layout title={`${post.data.title} — Nesc`} description={post.data.description}>
+  <div class="relative grid grid-cols-1 xl:grid-cols-[1fr_220px] gap-10 items-start w-full">
     <article class="w-full min-w-0">
-      <!-- Back Link (jkwon.co style) -->
+      <!-- Back Link -->
       <a
         href="/posts"
         class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-8 transition-colors"
       >
-        ← writing
+        ← Writing Archive
       </a>
 
       <!-- Post Title & Header -->
@@ -44,18 +44,20 @@ const readingTime = Math.ceil(words / 200);
           <time>{post.data.date.toISOString().split('T')[0]}</time>
           <span>•</span>
           <span>{readingTime} min read</span>
+          <span>•</span>
+          <span>{words} words</span>
         </div>
       </header>
 
-      <!-- Markdown Body -->
-      <div class="prose dark:prose-invert prose-zinc max-w-none text-sm leading-relaxed text-zinc-800 dark:text-zinc-200">
+      <!-- Markdown Article Body - Spacious Reading Measure -->
+      <div class="prose dark:prose-invert prose-zinc max-w-none text-base leading-relaxed text-zinc-800 dark:text-zinc-200">
         <Content />
       </div>
     </article>
 
     <!-- Side TOC for Desktop -->
     {headings.length > 0 && (
-      <aside class="hidden lg:block sticky top-10 self-start">
+      <aside class="hidden xl:block sticky top-10 self-start">
         <TOC headings={headings} />
       </aside>
     )}
