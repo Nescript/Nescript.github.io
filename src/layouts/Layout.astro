@@ -37,12 +37,6 @@ const navItems = [
   { path: '/timeline', label: 'Timeline' },
   { path: '/contact', label: 'Contact ↗' },
 ];
-
-const newsUpdates = [
-  { date: '2026.07.23', text: 'New blog launched!', link: '/' },
-  { date: '2026.05.10', text: 'Robotics trajectory optimizer C++20 release', link: '/projects' },
-  { date: '2026.02.15', text: 'Published state estimation article', link: '/posts' },
-];
 ---
 
 <!xhtml>
@@ -130,19 +124,6 @@ const newsUpdates = [
         <main class="page-content">
           <slot />
         </main>
-
-        <!-- Right News Sidebar -->
-        <aside class="news">
-          <h2>News</h2>
-          <ul>
-            {newsUpdates.map((item) => (
-              <li>
-                <strong class="font-mono text-zinc-900 dark:text-zinc-100">{item.date}</strong> —{' '}
-                <a href={item.link}>{item.text}</a>
-              </li>
-            ))}
-          </ul>
-        </aside>
       </div>
     </div>
 
