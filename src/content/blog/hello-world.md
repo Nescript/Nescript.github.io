@@ -1,31 +1,39 @@
 ---
+date: 2025-05-16
 title: Hello World
-date: 2026-07-23
-description: Welcome to my new blog powered by Astro and styled with a minimalist aesthetic inspired by jkwon.co.
-tags: ["Astro", "Blog", "General"]
-categories: ["General"]
-draft: false
 ---
-
-Welcome to my new blog! This site has been rebuilt with **Astro**, focusing on performance, typography, and clean design inspired by [jkwon.co](https://jkwon.co/).
+Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
 ## Quick Start
 
 ### Create a new post
 
-```bash
-# Add a new Markdown or MDX file in src/content/blog/
-touch src/content/blog/my-new-post.md
+``` bash
+$ hexo new "My New Post"
 ```
 
-### Local Development
+More info: [Writing](https://hexo.io/docs/writing.html)
 
-```bash
-npm run dev
+### Run server
+
+``` bash
+$ hexo server
 ```
 
-### Build & Deploy
+More info: [Server](https://hexo.io/docs/server.html)
 
-```bash
-npm run build
+### Generate static files
+
+``` bash
+$ hexo generate
 ```
+
+More info: [Generating](https://hexo.io/docs/generating.html)
+
+### Deploy to remote sites
+
+``` bash
+$ hexo deploy
+```
+
+More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
