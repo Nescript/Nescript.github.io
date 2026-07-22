@@ -14,6 +14,20 @@ const {
 
 const pathname = new URL(Astro.request.url).pathname;
 
+// Dynamic Header Title (jkwon.co feature: displays Nesc on home, and section name when navigated)
+function getHeaderTitle(path: string) {
+  if (path === '/' || path === '') return 'Nesc';
+  if (path.startsWith('/about')) return 'About';
+  if (path.startsWith('/projects')) return 'Projects';
+  if (path.startsWith('/posts')) return 'Writing';
+  if (path.startsWith('/timeline')) return 'Timeline';
+  if (path.startsWith('/contact')) return 'Contact';
+  if (path.startsWith('/gear')) return 'Gear';
+  return 'Nesc';
+}
+
+const headerTitle = getHeaderTitle(pathname);
+
 // All navigation menu items in English
 const navItems = [
   { path: '/', label: 'Home' },
@@ -77,7 +91,7 @@ const newsUpdates = [
         <aside class="sidebar">
           <header class="flex items-center justify-between w-full">
             <h1>
-              <a href="/" class="hover:opacity-80 transition-opacity">Nesc</a>
+              <a href="/" class="hover:opacity-80 transition-opacity">{headerTitle}</a>
             </h1>
 
             <!-- Dark Theme Switcher -->
