@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const gearCategories = [
+  {
+    category: 'Hardware',
+    items: [
+      { name: 'MacBook Pro 14"', desc: 'Primary laptop' },
+      { name: 'Dell UltraSharp 27" 4K', desc: 'Main monitor' },
+    ],
+  },
+  {
+    category: 'Software & Tools',
+    items: [
+      { name: 'Neovim / VS Code', desc: 'Code editors' },
+      { name: 'Ubuntu / macOS', desc: 'Operating systems' },
+      { name: 'ROS 2 & CMake', desc: 'Robotics build system' },
+    ],
+  },
+];
+---
+
+<Layout title="Gear — Nesc" description="Hardware and software setup.">
+  <div class="space-y-6 w-full">
+    <h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 font-sans border-b border-zinc-200/60 dark:border-zinc-800/60 pb-3">
+      Gear & Tools
+    </h2>
+
+    <div class="space-y-6">
+      {gearCategories.map((sec) => (
+        <div class="space-y-3">
+          <h3 class="text-sm font-semibold font-sans text-zinc-900 dark:text-zinc-100">
+            {sec.category}
+          </h3>
+          <ul class="space-y-2 text-xs">
+            {sec.items.map((item) => (
+              <li class="flex items-baseline justify-between border-b border-zinc-200/40 dark:border-zinc-800/40 pb-1.5">
+                <span class="font-medium text-zinc-900 dark:text-zinc-100 font-sans">{item.name}</span>
+                <span class="text-zinc-500 font-serif">{item.desc}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

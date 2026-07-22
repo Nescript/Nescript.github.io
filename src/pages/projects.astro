@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    title: 'Minimalist Blog Engine',
+    description: 'A static blog template built with Astro, Shiki, KaTeX, and View Transitions.',
+    tech: ['Astro', 'TypeScript', 'Shiki'],
+    link: 'https://github.com/nesc/26blog',
+  },
+  {
+    title: 'Autonomous Robot Trajectory Planner',
+    description: 'Real-time 3D motion planning and minimum-jerk trajectory generator in C++20.',
+    tech: ['C++20', 'ROS 2', 'Eigen'],
+    link: 'https://github.com/nesc',
+  },
+  {
+    title: 'State Estimator EKF Library',
+    description: 'Extended Kalman Filter implementation for IMU, Odometry, and LiDAR sensor fusion.',
+    tech: ['C++', 'State Estimation', 'ROS 2'],
+    link: 'https://github.com/nesc',
+  },
+];
+---
+
+<Layout title="Projects — Nesc" description="Projects built by Nesc.">
+  <div class="space-y-6 w-full">
+    <h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 font-sans border-b border-zinc-200/60 dark:border-zinc-800/60 pb-3">
+      Projects
+    </h2>
+
+    <div class="space-y-5">
+      {projects.map((project) => (
+        <div class="space-y-1 border-b border-zinc-200/50 dark:border-zinc-800/50 pb-4">
+          <div class="flex items-baseline justify-between">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-base font-semibold text-blue-600 dark:text-blue-400 hover:underline font-sans"
+            >
+              {project.title} ↗
+            </a>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 font-serif leading-relaxed">
+            {project.description}
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            {project.tech.map((t) => (
+              <span class="text-[10px] font-mono text-zinc-400">#{t}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

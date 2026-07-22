@@ -1,0 +1,45 @@
+---
+---
+
+<script>
+  function setupCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+
+    codeBlocks.forEach((codeBlock) => {
+      // Check if button already attached
+      if (codeBlock.querySelector('.copy-code-button')) return;
+
+      const container = document.createElement('div');
+      container.className = 'relative group/code';
+
+      // Insert wrapper
+      codeBlock.parentNode?.insertBefore(container, codeBlock);
+      container.appendChild(codeBlock);
+
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'copy-code-button absolute top-3 right-3 px-2 py-1 text-xs font-mono rounded bg-zinc-200/80 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 opacity-0 group-hover/code:opacity-100 transition-all duration-200 hover:scale-105';
+      copyBtn.innerText = 'Copy';
+      copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
+
+      copyBtn.addEventListener('click', async () => {
+        const codeText = codeBlock.querySelector('code')?.innerText || codeBlock.innerText;
+        try {
+          await navigator.clipboard.writeText(codeText);
+          copyBtn.innerText = 'Copied!';
+          copyBtn.classList.add('bg-emerald-500', 'text-white');
+          setTimeout(() => {
+            copyBtn.innerText = 'Copy';
+            copyBtn.classList.remove('bg-emerald-500', 'text-white');
+          }, 2000);
+        } catch (err) {
+          copyBtn.innerText = 'Failed';
+        }
+      });
+
+      container.appendChild(copyBtn);
+    });
+  }
+
+  setupCopyButtons();
+  document.addEventListener('astro:after-swap', setupCopyButtons);
+</script>

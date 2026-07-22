@@ -1,0 +1,242 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'katex/dist/katex.min.css';
+
+@layer base {
+  :root {
+    --bg-color: #ffffff;
+    --card-bg: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #555555;
+    --text-muted: #888888;
+    --accent-blue: #2563eb;
+    --border-color: #e5e5e5;
+    --code-bg: #f5f5f7;
+  }
+
+  html.dark {
+    --bg-color: #0c0d0e;
+    --card-bg: #141619;
+    --text-primary: #ededed;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --accent-blue: #60a5fa;
+    --border-color: #27272a;
+    --code-bg: #18181b;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* English: Newsreader / IM Fell English (Elegant Serif), Chinese: Noto Sans SC (思源黑体) */
+  body, h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea {
+    font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif !important;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+/* jkwon.co 1:1 Layout Classes */
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 90vw;
+  width: 100%;
+  padding: 40px 20px;
+  gap: 60px;
+  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+}
+
+/* Left Sidebar */
+.home-container .sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 180px;
+}
+
+.home-container .sidebar header {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.home-container .sidebar h1 {
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 500;
+  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+  letter-spacing: -0.01em;
+  margin: 0;
+  padding: 0 0 10px 0;
+  line-height: 1.1;
+}
+
+.home-container nav {
+  text-align: left;
+  width: 100%;
+}
+
+.home-container nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.home-container nav ul li {
+  margin: 8px 0;
+}
+
+.home-container nav ul li a {
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.home-container nav ul li a:hover,
+.home-container nav ul li a.active {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+/* Center Main Page Content */
+.home-container main.page-content {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+}
+
+/* Right News Sidebar */
+.home-container .news {
+  width: 240px;
+  min-width: 220px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.home-container .news h2 {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+  margin: 0 0 12px 0;
+  border-b: 1px solid var(--border-color);
+  padding-bottom: 6px;
+}
+
+.home-container .news ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.home-container .news ul li {
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  font-family: 'Newsreader', 'IM Fell English', 'Noto Sans SC', Georgia, serif !important;
+}
+
+.home-container .news ul li a {
+  color: var(--accent-blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.home-container .news ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Responsive (<= 1024px) */
+@media (max-width: 1024px) {
+  .home-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px 16px;
+    max-width: 100vw;
+  }
+  .home-container .sidebar {
+    width: 100%;
+    border-b: 1px solid var(--border-color);
+    padding-bottom: 16px;
+  }
+  .home-container nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+  }
+  .home-container main.page-content {
+    width: 100%;
+  }
+  .home-container .news {
+    width: 100%;
+    border-t: 1px solid var(--border-color);
+    padding-top: 20px;
+  }
+}
+
+/* Status Dot */
+.status-dot {
+  position: relative;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color: #10b981;
+  border-radius: 50%;
+}
+
+/* Shiki Code Styling */
+.astro-code, .astro-code * {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace !important;
+}
+
+.astro-code {
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  line-height: 1.65;
+  margin: 1.5rem 0;
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* KaTeX custom styling */
+.katex-display {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  padding: 0.75rem 1rem;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+}

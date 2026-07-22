@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TOC from '../../components/TOC.astro';
+import CopyCode from '../../components/CopyCode.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+
+// Word count and reading time
+const words = post.body.trim().split(/\s+/).length;
+const readingTime = Math.ceil(words / 200);
+---
+
+<Layout title={`${post.data.title} — nesc`} description={post.data.description}>
+  <div class="relative grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-10 items-start">
+    <article class="w-full min-w-0">
+      <!-- Back Link (jkwon.co style) -->
+      <a
+        href="/posts"
+        class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-8 transition-colors"
+      >
+        ← writing
+      </a>
+
+      <!-- Post Title & Header -->
+      <header class="space-y-3 pb-6 border-b border-zinc-200/60 dark:border-zinc-800/60 mb-8">
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          {post.data.title}
+        </h1>
+
+        <div class="flex items-center gap-3 text-xs font-mono text-zinc-400">
+          <time>{post.data.date.toISOString().split('T')[0]}</time>
+          <span>•</span>
+          <span>{readingTime} min read</span>
+        </div>
+      </header>
+
+      <!-- Markdown Body -->
+      <div class="prose dark:prose-invert prose-zinc max-w-none text-sm leading-relaxed text-zinc-800 dark:text-zinc-200">
+        <Content />
+      </div>
+    </article>
+
+    <!-- Side TOC for Desktop -->
+    {headings.length > 0 && (
+      <aside class="hidden lg:block sticky top-10 self-start">
+        <TOC headings={headings} />
+      </aside>
+    )}
+  </div>
+
+  <CopyCode />
+</Layout>
