@@ -10,21 +10,21 @@ const projects = [
     startDate: '2026-07-14',
   },
   {
-    title: 'rm_controllers (refactor branch)',
+    title: 'Bipedal wheel controller (refactor branch)',
     description: '对程序设计架构的探索，我将轮腿控制器的核心算法与 ROS 解耦，便于未来的迁移。',
     tech: ['C++', 'ROS', 'Control Architecture', 'RoboMaster'],
     link: 'https://github.com/Nescript/rm_controllers/tree/refactor',
     startDate: '2026-06-15',
   },
   {
-    title: 'balance_car_ws',
+    title: 'Balance controller',
     description: '我的平衡车101，分别实现了串级 PID 控制和 LQR 控制。',
     tech: ['C++', 'Cascade PID', 'LQR', 'Control Theory'],
     link: 'https://github.com/Nescript/balance_car_ws',
     startDate: '2026-01-25',
   },
   {
-    title: 'sentry_chassis_controller',
+    title: 'Sentry chassis controller',
     description: '我的 ROS 101。在这里我实现了舵轮底盘的控制，包括运动学正逆解算，动力学解算，以及功率计算与控制等功能。',
     tech: ['ROS Noetic', 'ros_control', 'Kinematics', 'Dynamics'],
     link: 'https://github.com/Nescript/sentry_chassis_controller',
@@ -38,19 +38,19 @@ const projects = [
     <div class="space-y-5">
       {projects.map((project) => (
         <div class="space-y-1.5 border-b border-zinc-200/50 dark:border-zinc-800/50 pb-4">
-          <div class="flex items-baseline justify-between gap-2">
+          <div>
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline font-sans flex items-center gap-1"
+              class="text-base font-semibold text-blue-600 dark:text-blue-400 hover:underline font-sans flex items-center gap-1"
             >
+              <span class="font-mono text-zinc-400 font-normal">[{project.startDate}]</span>{' '}
               <span>{project.title}</span>
               <span class="text-xs">↗</span>
             </a>
-            <span class="text-xs font-mono text-zinc-400 shrink-0">{project.startDate}</span>
           </div>
-          <p class="text-xs text-zinc-600 dark:text-zinc-400 font-serif leading-relaxed">
+          <p class="text-sm text-zinc-600 dark:text-zinc-400 font-serif leading-relaxed">
             {project.description}
           </p>
           <div class="flex flex-wrap gap-1.5 pt-0.5">

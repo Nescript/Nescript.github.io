@@ -7,23 +7,21 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 ---
 
 <Layout title="Writing — Nescript" description="Technical writing, math, and robotics thoughts.">
-  <div class="space-y-6 w-full">
-    <div class="divide-y divide-zinc-200/60 dark:divide-zinc-800/60">
+  <div class="space-y-6 w-full max-w-prose">
+    <div class="space-y-5">
       {posts.map((post) => (
-        <article class="py-3.5 first:pt-0 last:pb-0">
-          <div class="flex items-baseline justify-between gap-2">
+        <article class="space-y-1.5 border-b border-zinc-200/50 dark:border-zinc-800/50 pb-4">
+          <div>
             <a
               href={`/posts/${post.slug}`}
-              class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline font-sans"
+              class="text-base font-medium text-blue-600 dark:text-blue-400 hover:underline font-sans"
             >
+              <span class="font-mono text-zinc-400 font-normal">[{post.data.date.toISOString().split('T')[0]}]</span>{' '}
               {post.data.title}
             </a>
-            <time class="text-xs font-mono text-zinc-400 shrink-0">
-              {post.data.date.toISOString().split('T')[0]}
-            </time>
           </div>
           {post.data.description && (
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-1 font-serif">
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 font-serif leading-relaxed">
               {post.data.description}
             </p>
           )}

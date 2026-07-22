@@ -20,7 +20,6 @@ function getHeaderTitle(path: string) {
   if (path.startsWith('/about')) return 'About';
   if (path.startsWith('/projects')) return 'Projects';
   if (path.startsWith('/posts')) return 'Writing';
-  if (path.startsWith('/timeline')) return 'Timeline';
   if (path.startsWith('/contact')) return 'Contact';
   if (path.startsWith('/gear')) return 'Gear';
   return 'Nescript';
@@ -34,7 +33,6 @@ const navItems = [
   { path: '/about', label: 'About' },
   { path: '/projects', label: 'Projects' },
   { path: '/posts', label: 'Writing' },
-  { path: '/timeline', label: 'Timeline' },
   { path: '/contact', label: 'Contact ↗' },
 ];
 ---
@@ -108,7 +106,6 @@ const navItems = [
           if (pathname.startsWith('/about')) title = 'About';
           else if (pathname.startsWith('/projects')) title = 'Projects';
           else if (pathname.startsWith('/posts')) title = 'Writing';
-          else if (pathname.startsWith('/timeline')) title = 'Timeline';
           else if (pathname.startsWith('/contact')) title = 'Contact';
           else if (pathname.startsWith('/gear')) title = 'Gear';
 
