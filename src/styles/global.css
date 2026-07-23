@@ -248,14 +248,13 @@
 /* Shiki Code Styling */
 .astro-code,
 .astro-code * {
-  font-family: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace !important;
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace !important;
 }
 
 .astro-code {
   padding: 1.25rem;
   border-radius: 0.375rem;
   border: 1px solid var(--border-color);
-  background-color: var(--code-bg) !important;
   font-size: 0.85rem;
   line-height: 1.65;
   margin: 1.5rem 0;
@@ -334,12 +333,12 @@
   filter: sepia(0) contrast(1) saturate(1);
 }
 
-/* KaTeX custom styling */
+/* KaTeX custom styling (Academic Print Style) */
 .katex-display {
   margin: 1.5rem 0;
+  padding: 0.5rem 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
   overflow-x: auto;
-  padding: 0.75rem 1rem;
-  background-color: var(--code-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
 }
