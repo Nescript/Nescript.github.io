@@ -19,7 +19,8 @@ function getHeaderTitle(path: string) {
   if (path === '/' || path === '') return 'Nescript';
   if (path.startsWith('/about')) return 'About';
   if (path.startsWith('/projects')) return 'Projects';
-  if (path.startsWith('/posts')) return 'Writing';
+  if (path.startsWith('/articles')) return 'Articles';
+  if (path.startsWith('/thoughts')) return 'Thoughts';
   if (path.startsWith('/contact')) return 'Contact';
   if (path.startsWith('/gear')) return 'Gear';
   return 'Nescript';
@@ -32,7 +33,8 @@ const navItems = [
   { path: '/', label: 'Home' },
   { path: '/about', label: 'About' },
   { path: '/projects', label: 'Projects' },
-  { path: '/posts', label: 'Writing' },
+  { path: '/articles', label: 'Articles' },
+  { path: '/thoughts', label: 'Thoughts' },
   { path: '/contact', label: 'Contact ↗' },
 ];
 ---
@@ -105,7 +107,8 @@ const navItems = [
           let title = 'Nescript';
           if (pathname.startsWith('/about')) title = 'About';
           else if (pathname.startsWith('/projects')) title = 'Projects';
-          else if (pathname.startsWith('/posts')) title = 'Writing';
+          else if (pathname.startsWith('/articles')) title = 'Articles';
+          else if (pathname.startsWith('/thoughts')) title = 'Thoughts';
           else if (pathname.startsWith('/contact')) title = 'Contact';
           else if (pathname.startsWith('/gear')) title = 'Gear';
 

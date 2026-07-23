@@ -17,10 +17,6 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await post.render();
-
-// Word count and reading time
-const words = post.body.trim().split(/\s+/).length;
-const readingTime = Math.ceil(words / 200);
 ---
 
 <Layout title={`${post.data.title} — Nescript`} description={post.data.description}>
@@ -28,10 +24,10 @@ const readingTime = Math.ceil(words / 200);
     <article class="w-full min-w-0">
       <!-- Back Link -->
       <a
-        href="/posts"
+        href="/articles"
         class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-8 transition-colors"
       >
-        ← Writing Archive
+        ← Articles Archive
       </a>
 
       <!-- Post Title & Header -->
@@ -40,12 +36,8 @@ const readingTime = Math.ceil(words / 200);
           {post.data.title}
         </h1>
 
-        <div class="flex items-center gap-3 text-xs font-mono text-zinc-400">
-          <time>{post.data.date.toISOString().split('T')[0]}</time>
-          <span>•</span>
-          <span>{readingTime} min read</span>
-          <span>•</span>
-          <span>{words} words</span>
+        <div class="font-mono text-xs text-zinc-400 font-normal">
+          <time>[{post.data.date.toISOString().split('T')[0]}]</time>
         </div>
       </header>
 

@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TOC from '../../components/TOC.astro';
+import CopyCode from '../../components/CopyCode.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const thoughts = (await getCollection('thoughts')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+
+  return thoughts.map((item) => ({
+    params: { slug: item.slug },
+    props: { thought: item },
+  }));
+}
+
+const { thought } = Astro.props;
+const { Content, headings } = await thought.render();
+---
+
+<Layout title={`${thought.data.title} — Nescript`} description={thought.data.description}>
+  <div class="relative grid grid-cols-1 xl:grid-cols-[1fr_220px] gap-10 items-start w-full">
+    <article class="w-full min-w-0">
+      <!-- Back Link -->
+      <a
+        href="/thoughts"
+        class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-8 transition-colors"
+      >
+        ← Thoughts Archive
+      </a>
+
+      <!-- Post Title & Header -->
+      <header class="space-y-3 pb-6 border-b border-zinc-200/60 dark:border-zinc-800/60 mb-8">
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          {thought.data.title}
+        </h1>
+
+        <div class="font-mono text-xs text-zinc-400 font-normal">
+          <time>[{thought.data.date.toISOString().split('T')[0]}]</time>
+        </div>
+      </header>
+
+      <!-- Markdown Body -->
+      <div class="prose dark:prose-invert prose-zinc max-w-none text-sm leading-relaxed text-zinc-800 dark:text-zinc-200">
+        <Content />
+      </div>
+    </article>
+
+    <!-- Side TOC for Desktop -->
+    {headings.length > 0 && (
+      <aside class="hidden xl:block sticky top-10 self-start">
+        <TOC headings={headings} />
+      </aside>
+    )}
+  </div>
+
+  <CopyCode />
+</Layout>

@@ -6,14 +6,14 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<Layout title="Writing — Nescript" description="Technical writing, math, and robotics thoughts.">
+<Layout title="Articles — Nescript" description="Technical writing, math, and robotics articles.">
   <div class="space-y-6 w-full max-w-prose">
     <div class="space-y-5">
       {posts.map((post) => (
         <article class="space-y-1.5 border-b border-zinc-200/50 dark:border-zinc-800/50 pb-4">
           <div>
             <a
-              href={`/posts/${post.slug}`}
+              href={`/articles/${post.slug}`}
               class="text-base font-medium text-blue-600 dark:text-blue-400 hover:underline font-sans"
             >
               <span class="font-mono text-zinc-400 font-normal">[{post.data.date.toISOString().split('T')[0]}]</span>{' '}

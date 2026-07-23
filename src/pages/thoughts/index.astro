@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const thoughts = (await getCollection('thoughts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Thoughts — Nescript" description="Random thoughts, notes, and personal essays.">
+  <div class="space-y-6 w-full max-w-prose">
+    <div class="space-y-4">
+      {thoughts.map((item) => (
+        <article class="border-b border-zinc-200/50 dark:border-zinc-800/50 pb-3">
+          <div>
+            <a
+              href={`/thoughts/${item.slug}`}
+              class="text-base font-medium text-blue-600 dark:text-blue-400 hover:underline font-sans"
+            >
+              <span class="font-mono text-zinc-400 font-normal">[{item.data.date.toISOString().split('T')[0]}]</span>{' '}
+              {item.data.title}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
