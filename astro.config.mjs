@@ -14,8 +14,8 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       experimentalThemes: {
-        light: 'github-light',
-        dark: 'github-dark-dimmed',
+        light: 'min-light',
+        dark: 'min-dark',
       },
       wrap: true,
     },
