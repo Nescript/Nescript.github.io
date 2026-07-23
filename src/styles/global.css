@@ -131,6 +131,7 @@
   margin: 0 auto;
   gap: clamp(24px, 3.5vw, 50px);
   font-family: 'IM Fell English', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+  min-height: calc(100vh - 100px);
 }
 
 /* 3. 左侧导航栏 - 通过 calc() 精确计算屏幕垂直居中 */
@@ -142,10 +143,7 @@
   width: clamp(160px, 14vw, 220px);
   min-width: 160px;
   position: sticky;
-  /* 精确计算：视口垂直中心点 50vh 减去导航栏自身半高 (115px) */
   top: clamp(40px, calc(50vh - 115px), 300px);
-  margin-top: clamp(0px, calc(50vh - 155px), 260px);
-  /* 初始页面加载时计算下推居中 */
   align-self: flex-start;
   height: fit-content;
   flex-shrink: 0;
@@ -229,12 +227,12 @@
     align-items: flex-start;
     gap: 20px;
     padding: 0;
+    min-height: auto;
   }
 
   .home-container .sidebar {
     position: relative;
     top: 0 !important;
-    margin-top: 0 !important;
     width: 100%;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 16px;

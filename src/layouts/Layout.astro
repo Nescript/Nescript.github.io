@@ -170,14 +170,18 @@ const navItems = [
             const headerRect = header.getBoundingClientRect();
             const navRect = nav.getBoundingClientRect();
             const sidebarCenterY = (headerRect.top + navRect.bottom) / 2;
-            const targetTop = sidebarCenterY - targetH / 2;
-            const offset = Math.max(0, targetTop);
+            const wrapper = document.querySelector('.home-wrapper');
+            const wrapperPaddingTop = wrapper ? parseFloat(getComputedStyle(wrapper).paddingTop) : 0;
+            const targetMarginTop = sidebarCenterY - targetH / 2 - wrapperPaddingTop;
+            const offset = Math.max(0, targetMarginTop);
             content.style.marginTop = offset + 'px';
           } else {
             const sidebarRect = sidebar.getBoundingClientRect();
             const sidebarCenterY = sidebarRect.top + sidebarRect.height / 2;
-            const targetTop = sidebarCenterY - targetH / 2;
-            const offset = Math.max(0, targetTop);
+            const wrapper = document.querySelector('.home-wrapper');
+            const wrapperPaddingTop = wrapper ? parseFloat(getComputedStyle(wrapper).paddingTop) : 0;
+            const targetMarginTop = sidebarCenterY - targetH / 2 - wrapperPaddingTop;
+            const offset = Math.max(0, targetMarginTop);
             content.style.marginTop = offset + 'px';
           }
           return;
