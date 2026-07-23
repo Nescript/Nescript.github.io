@@ -36,35 +36,38 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* English: Newsreader / IM Fell English, Chinese: Noto Sans SC (思源黑体) */
-  /* Note: do NOT include span here — it overrides KaTeX math fonts. */
+  /* Body text: IM Fell English; Headings: Special Elite.
+     Note: do NOT include span here — it overrides KaTeX math fonts. */
   body,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
   p,
   a,
   button,
   input,
   select,
   textarea {
-    font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+    font-family: 'IM Fell English', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Special Elite', 'Noto Serif SC', 'Songti SC', 'SimSun', monospace !important;
   }
 
   /* KaTeX: letters/variables use the site's serif font;
      symbols, delimiters, operators keep KaTeX fonts.
      KaTeX_Math / KaTeX_Main are kept as fallbacks for glyphs the serif font lacks. */
   .katex .mord.mathnormal {
-    font-family: 'EB Garamond', 'KaTeX_Math', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+    font-family: 'IM Fell English', 'KaTeX_Math', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
   }
 
   .katex .mord.text,
   .katex .mathrm,
   .katex .textrm {
-    font-family: 'EB Garamond', 'KaTeX_Main', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+    font-family: 'IM Fell English', 'KaTeX_Main', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
     font-style: normal;
   }
 
@@ -127,7 +130,7 @@
   width: 100%;
   margin: 0 auto;
   gap: clamp(24px, 3.5vw, 50px);
-  font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+  font-family: 'IM Fell English', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
 }
 
 /* 3. 左侧导航栏 - 通过 calc() 精确计算屏幕垂直居中 */
@@ -159,7 +162,7 @@
 .home-container .sidebar h1 {
   font-size: clamp(24px, 2.4vw, 32px);
   font-weight: 500;
-  font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+  font-family: 'Special Elite', 'Noto Serif SC', 'Songti SC', 'SimSun', monospace !important;
   letter-spacing: -0.01em;
   margin: 0;
   padding: 4px 0;
@@ -184,7 +187,7 @@
 
 .home-container nav ul li a {
   font-size: clamp(18px, 1.7vw, 21px);
-  font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+  font-family: 'IM Fell English', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.15s ease;
@@ -211,7 +214,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  font-family: 'EB Garamond', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+  font-family: 'IM Fell English', 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
 }
 
 /* 移动端自适应 (<= 768px) */
