@@ -22,18 +22,17 @@ const { Content, headings } = await thought.render();
 <Layout title={`${thought.data.title} — Nescript`} description={thought.data.description}>
   <div class="relative grid grid-cols-1 xl:grid-cols-[1fr_220px] gap-10 items-start w-full">
     <article class="w-full min-w-0">
-      <!-- Back Link -->
-      <a
-        href="/thoughts"
-        class="inline-flex items-center text-sm font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-8 transition-colors"
-      >
-        ←
-      </a>
-
       <!-- Post Title & Header -->
       <header class="space-y-3 pb-6 border-b border-zinc-200/60 dark:border-zinc-800/60 mb-8">
-        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-          {thought.data.title}
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 flex items-baseline gap-2.5">
+          <a
+            href="/thoughts"
+            class="text-xl sm:text-2xl font-mono font-normal text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors shrink-0 select-none"
+            aria-label="Back to thoughts"
+          >
+            ←
+          </a>
+          <span>{thought.data.title}</span>
         </h1>
 
         <div class="font-mono text-base text-zinc-400 font-normal">
