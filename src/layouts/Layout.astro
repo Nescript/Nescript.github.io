@@ -138,6 +138,12 @@ const navItems = [
         const content = document.querySelector('main.page-content');
         if (!content) return;
 
+        // 移动端 (<= 768px) 不执行任何垂直居中逻辑，保持标准响应式流式布局
+        if (window.innerWidth <= 768) {
+          content.style.marginTop = '';
+          return;
+        }
+
         const vh = window.innerHeight;
         const centerTarget = content.querySelector('[data-center-target]');
         const contentH = centerTarget ? centerTarget.offsetHeight : content.scrollHeight;

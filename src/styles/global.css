@@ -184,23 +184,29 @@
 /* 移动端自适应 (<= 768px) */
 @media (max-width: 768px) {
   .home-wrapper {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 24px 20px 40px 20px;
+    min-height: auto;
   }
 
   .home-container {
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-    padding: 20px 0;
+    gap: 20px;
+    padding: 0;
   }
 
   .home-container .sidebar {
     position: relative;
-    top: 0;
+    top: 0 !important;
+    margin-top: 0 !important;
     width: 100%;
-    border-b: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 16px;
+  }
+
+  .home-container main.page-content {
+    margin-top: 0 !important;
+    padding-top: 0;
   }
 
   .home-container nav ul {
