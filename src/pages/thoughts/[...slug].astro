@@ -25,9 +25,9 @@ const { Content, headings } = await thought.render();
       <!-- Back Link -->
       <a
         href="/thoughts"
-        class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-8 transition-colors"
+        class="inline-flex items-center text-sm font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-8 transition-colors"
       >
-        ← Thoughts Archive
+        ←
       </a>
 
       <!-- Post Title & Header -->
@@ -36,7 +36,7 @@ const { Content, headings } = await thought.render();
           {thought.data.title}
         </h1>
 
-        <div class="font-mono text-xs text-zinc-400 font-normal">
+        <div class="font-mono text-base text-zinc-400 font-normal">
           <time>[{thought.data.date.toISOString().split('T')[0]}]</time>
         </div>
       </header>
