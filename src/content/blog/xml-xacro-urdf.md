@@ -5,9 +5,10 @@ description: "XML 语法基础、URDF 机器人描述文件、xacro 宏定义与
 draft: false
 ---
 
-# 1. XML
+## 1. XML
 
 XML 是一种用来传输和存储数据的标记语言。
+
 在 ROS 中，XML 用来：
 
 - 书写机器人统一描述文件 URDF，以及进一步的 Xacro
@@ -32,6 +33,7 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 ```
 
 `robot` 是根，随后有 `base_link` 和 `link` 两个分叉，分叉往后又有别的枝叶。
+
 这里引出**元素**和**属性**的概念：
 
 - 以上面的文件为例，`robot`, `link`, `visual` 等就是元素。元素指的是从（且包括）开始标签直到（且包括）结束标签的部分。一个元素可以包含：
@@ -42,10 +44,13 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 - 在元素后面的，如 `name`, `radius` 是属性。属性的数值一定要用双引号围着，不同的属性用空格分隔
 
 进一步看该文档的整体结构，最开始的 `<?xml version="1.0" encoding="UTF-8"?>` **声明**了文件的 XML 版本和所使用的编码，这是可选的。
+
 下一行就是文件的**根元素**，说明了本文档描述了一个机器人。元素的属性 `name` 说明了机器人名称。
+
 需要明确的是，正如一棵树只有一个根，一个 XML 文件需要一个包裹一切（除了声明）的**根元素**，它是**所有其他元素的父元素**。
 
 所有的 XML 元素一般都有一个**关闭标签**。以 `visual` 为例：有代表开始的 `<visual>`，以及代表结束的 `</visual>`。
+
 但 XML 也允许单标签的使用，写法如下：
 
 ```xml
@@ -90,6 +95,7 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 ```
 
 很好，就是如此，我们得到了一个形式良好的 XML 文件，记录了图书馆的数据。
+
 请记住以下书写形式良好的 XML 文件的要求：
 
 - XML 文档必须有一个根元素
@@ -100,10 +106,10 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 
 ---
 
-# 2. URDF
+## 2. URDF
 
 - [官方 URDF 文档](https://docs.ros.org/en/rolling/Tutorials/Intermediate/URDF/URDF-Main.html)
-- [翻译 URDF 文档](http://fishros.org/doc/ros2/humble/Tutorials/Intermediate/URDF/Building-a-Visual-Robot-Model-with-URDF-from-Scratch.html) (虽然上述文档是 ROS 2 的，但它们在 ROS 1 中同样适用)
+- [翻译 URDF 文档](http://fishros.org/doc/ros2/humble/Tutorials/Intermediate/URDF/Building-a-Visual-Robot-Model-with-URDF-from-Scratch.html)（虽然上述文档是 ROS 2 的，但它们在 ROS 1 中同样适用）
 - **[URDF XML 规范总览主页 (ROS Wiki)](https://wiki.ros.org/urdf/XML)**：该页面列出了构成机器人模型的所有核心 XML 元素。
 - [古月居的一篇记录帖](http://dev.guyuehome.com/detail?id=1825483221320433665)
 - [Xacro 文档](https://wiki.ros.org/xacro)
@@ -116,10 +122,12 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 - 为 joint 创建 `transmission`，这是控制器控制机器人的关键
 - 还有一个 Gazebo 拓展标签
 
-## 2.1 根元素 `<robot>`
+### 2.1 根元素 `<robot>`
 
 根元素包裹着其他所有元素，有一个 `name` 属性，代表我们机器人的名字。
+
 值得注意的是，如果要用 Xacro，则需要加上 `xmlns:xacro="http://www.ros.org/wiki/xacro"` 这一属性。
+
 综上，根元素的一个例子是：
 
 ```xml
@@ -128,7 +136,7 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 </robot>
 ```
 
-## 2.2 刚体 `<link>`
+### 2.2 刚体 `<link>`
 
 描述具有惯性、视觉特征和碰撞属性的刚体（由这句话我们可以知道 link 元素内部就是这几个东西），如下图所示：
 
@@ -159,18 +167,20 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 </link>
 ```
 
-### 2.2.1 惯性 `<inertial>`
+#### 2.2.1 惯性 `<inertial>`
 
 本元素描述了物体的物理属性：
+
 - `<origin>` 描述了物体质心相对于这个 link 坐标系的偏移，我们一般创建的都是标准的几何体，质心就在原点，所以全填 0 就好
 - `<mass>` 描述了物体的质量，urdf 中所有的数值单位都是国际单位，这里为 kg
 - `<inertia>` 3x3 转动惯量矩阵，我这次是让 AI 生一份填进去。以下引用嗣音的笔记内容：
 
 > 我对这个没什么研究，只是平时都将 ixx、iyy、izz 设置为 0.1 或者 0.001，如果仿真模型加载到 gazebo 里后原地乱飞就得想想这个是不是设置太小了。
 
-### 2.2.2 视觉 `<visual>`
+#### 2.2.2 视觉 `<visual>`
 
 本元素描述了物体的视觉属性：
+
 - `<origin>` 描述了**视觉几何元素的坐标系相对于这个 link 坐标系的位姿**，这个一般也全填写 0。刚开始尝试时我选择修改并统一 visual 和 collision 元素的 origin 元素来修改物体位置，但是这样并不是好的实现，应当在 joint 的 origin 元素里定义
 - `<geometry>` 描述了这物体看起来是个什么形状，有几个可选标签：
   - `box`（立方体）
@@ -187,6 +197,7 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 这里使用了一点 Xacro。
 
 - `<material>` 描述了物体的外观材料
+
 在 URDF 前半部分我们可以统一定义各种颜色，如：
 
 ```xml
@@ -197,14 +208,14 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 
 `<material>` 元素设置属性 `name="white"`，在 Gazebo 以及 RViz 里这看起来就是白色的了。也可以从文件加载材质。
 
-### 2.2.3 碰撞箱 `<collision>`
+#### 2.2.3 碰撞箱 `<collision>`
 
 - `<origin>` 描述了碰撞箱几何元素的坐标系相对于这个 link 坐标系的位姿，这个一般也全填写 0。
 - `<geometry>` 描述了这物体碰撞箱是个什么形状，设置的与 visual 一样即可。
 
 我们可以通过此项来设置安全区，假设有个机器人头部是半球形，我们希望整个区域都不能靠近，那么可以把碰撞箱设置得更大，如设置为一个长方体。
 
-## 2.3 关节 `<joint>`
+### 2.3 关节 `<joint>`
 
 `joint` 是链接 link 的关节，如下图所示，joint 描述了连接的 link 分别是谁，link 旋转的方向以及最为关键的，被相连的 link 之间的坐标变换。
 
@@ -222,15 +233,16 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 </joint>
 ```
 
-### 2.3.1 属性 `type`
+#### 2.3.1 属性 `type`
 
 指定关节类型，常用的有：
+
 - `revolute`：旋转关节，旋转范围受限制（带有 `limit` 标签）
 - `continuous`：连续旋转关节，无旋转限制（如轮子）
 - `prismatic`：滑动关节，平移运动
 - `fixed`：固定关节，不可移动
 
-### 2.3.2 子元素
+#### 2.3.2 子元素
 
 - `<origin>`：定义子 link 坐标系相对于父 link 坐标系的位姿变化
 - `<parent>`：指定父级 link 的名称
@@ -240,11 +252,11 @@ XML 语法的核心是树结构，以下面的 URDF 文件为例：
 
 ---
 
-# 3. Xacro
+## 3. Xacro
 
 Xacro（XML Macros）是 URDF 的扩展，允许使用变量、宏定义以及简单的数学运算，大大精简了复杂的 URDF 文件。
 
-## 3.1 变量声明与引用
+### 3.1 变量声明与引用
 
 使用 `<xacro:property>` 定义常量变量：
 
@@ -259,7 +271,7 @@ Xacro（XML Macros）是 URDF 的扩展，允许使用变量、宏定义以及�
 <cylinder radius="${wheel_radius}" length="0.02"/>
 ```
 
-## 3.2 宏定义与调用
+### 3.2 宏定义与调用
 
 使用 `<xacro:macro>` 封装可重用的模块（例如重复创建多个轮子）：
 
@@ -287,7 +299,7 @@ Xacro（XML Macros）是 URDF 的扩展，允许使用变量、宏定义以及�
 
 ---
 
-# 4. Gazebo 仿真配置
+## 4. Gazebo 仿真配置
 
 要将 URDF / Xacro 模型加载到 Gazebo 仿真环境中，还需要加入 `<gazebo>` 拓展标签：
 

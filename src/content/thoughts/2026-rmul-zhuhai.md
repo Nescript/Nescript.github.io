@@ -1,27 +1,26 @@
 ---
-title: "2026 RMUL 华南站"
+title: "2026 RMUL"
 date: 2026-03-24
-description: "作为梯度随队去了珠海，参加2026年华南站机甲大师联盟赛。"
+description: "I went to Zhuhai with the reserve team for the 2026 RoboMaster Regional Competition (South China Region)."
 tags:
   - note
   - journal
 ---
 
-作为梯度随队去了珠海，参加2026年华南站机甲大师联盟赛。
-比赛时间是 3 月 19 至 3 月 22 日。我们提前抵达以开始检修与调试。
+I went to Zhuhai with the reserve team for the 2026 RoboMaster Regional Competition (South China Region). The competition was from March 19 to March 22, but we arrived early for maintenance and debugging.
 
-酒店定在新奥林科技园，旁边就是珠海国际赛车场，去比赛场地北京理工大学珠海校区也很近，2.8km距离，巴士过去只要30分钟左右。
+The hotel was in Sun Olym Technology Park, right next to Zhuhai International Circuit. It was close to the venue, Beijing Institute of Technology, Zhuhai Campus—2.8 km away, about a 30-minute bus ride.
 
-珠海的巴士统一只要一元，车型看起来也比广州更新。除了班次少，等的时间长些，没有什么可抱怨的。
+Buses in Zhuhai cost flat one yuan, and the vehicles look newer than those in Guangzhou. Except for fewer runs and longer wait times, there wasn't much to complain about.
 
-3 月 19 号下午我离开去了珠海的海边，问了几个来过珠海的朋友，最后决定去爱情邮局（虽然住在珠海的朋友极力反对）。坐巴士到凤凰南路后原本要转车，却看到不远处就是大海，遂改为骑行。
+On the afternoon of March 19, I went out to the seaside. I asked a few friends who had been to Zhuhai, and decided to go to Love Post Office (though friends living in Zhuhai strongly advised against it). I took a bus to Phoenix South Road and originally planned to transfer, but seeing the sea not far away, I decided to ride a bike instead.
 
-沿着东风路骑到情侣中路，就看到了大海。
+Riding along Dongfeng Road onto Lovers' Middle Road, the sea appeared.
 
-![珠海海边](/images/thoughts/IMG_2197.jpg)
+![Zhuhai Seaside](/images/thoughts/IMG_2197.jpg)
 
-天气很好，晴空万里又因有海风而不至于炎热。
+The weather was good—clear blue skies, and the sea breeze kept it from getting hot.
 
-这里的沿海自行车道建设得很好，骑行体验极佳。一路骑骑拍拍，经过珠海渔女就到了爱情邮局。
+The bike paths along the coast were well built, making the ride very pleasant. I took photos along the way, passed the Zhuhai Fisher Girl, and reached Love Post Office.
 
-给几个朋友写了明信片，分别附上了一句诗，寄出后便返程了。
+I wrote postcards to a few friends, each with a line of poetry, mailed them, and headed back.

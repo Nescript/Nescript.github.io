@@ -52,11 +52,11 @@ const navItems = [
     <meta name="title" content={title} />
     <meta name="description" content={description} />
 
-    <!-- Google Fonts (Special Elite + Noto Serif SC 思源宋体 + JetBrains Mono + Courier Prime) -->
+    <!-- Google Fonts (IM Fell English + Noto Serif SC 思源宋体 + JetBrains Mono + Courier Prime) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Noto+Serif+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Special+Elite&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Noto+Serif+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -157,6 +157,32 @@ const navItems = [
 
         const vh = window.innerHeight;
         const centerTarget = content.querySelector('[data-center-target]');
+        const sidebar = document.querySelector('.home-container .sidebar');
+        const isHome = window.location.pathname === '/' || window.location.pathname === '';
+
+        if (isHome && centerTarget && sidebar) {
+          /* Home 页：漫画容器中心与侧边栏 header 到 nav 之间的中点对齐 */
+          const targetH = centerTarget.offsetHeight;
+          const header = sidebar.querySelector('header');
+          const nav = sidebar.querySelector('nav');
+
+          if (header && nav) {
+            const headerRect = header.getBoundingClientRect();
+            const navRect = nav.getBoundingClientRect();
+            const sidebarCenterY = (headerRect.top + navRect.bottom) / 2;
+            const targetTop = sidebarCenterY - targetH / 2;
+            const offset = Math.max(0, targetTop);
+            content.style.marginTop = offset + 'px';
+          } else {
+            const sidebarRect = sidebar.getBoundingClientRect();
+            const sidebarCenterY = sidebarRect.top + sidebarRect.height / 2;
+            const targetTop = sidebarCenterY - targetH / 2;
+            const offset = Math.max(0, targetTop);
+            content.style.marginTop = offset + 'px';
+          }
+          return;
+        }
+
         const contentH = centerTarget ? centerTarget.offsetHeight : content.scrollHeight;
         const padding = 80; /* 上下安全留白 */
 
@@ -164,10 +190,8 @@ const navItems = [
           /* 内容超高，不居中，与左侧导航栏保持同一基线 */
           content.style.marginTop = '';
         } else {
-          /* Home 页用光学中心偏上 (2.5)，其他页面用数学中心 (2) */
-          const isHome = window.location.pathname === '/' || window.location.pathname === '';
-          const divisor = isHome ? 2.5 : 2;
-          const offset = Math.max(0, (vh - contentH) / divisor - padding);
+          /* 其他页面用数学中心 (2) */
+          const offset = Math.max(0, (vh - contentH) / 2 - padding);
           content.style.marginTop = offset + 'px';
         }
       }
