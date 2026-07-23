@@ -23,7 +23,7 @@ const contactInfo = {
           <div class="flex items-center gap-3">
             <a
               href={`mailto:${contactInfo.email}`}
-              class="text-sm font-mono text-blue-600 dark:text-blue-400 hover:underline"
+              class="text-sm font-mono text-[var(--accent-blue)] hover:underline"
             >
               {contactInfo.email}
             </a>
@@ -44,7 +44,7 @@ const contactInfo = {
             href={contactInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm font-mono text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+            class="text-sm font-mono text-[var(--accent-blue)] hover:underline flex items-center gap-1"
           >
             <span>@{contactInfo.githubUser}</span>
             <span class="text-xs">↗</span>

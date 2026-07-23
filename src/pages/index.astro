@@ -23,7 +23,7 @@ try {
       />
     </div>
     <span id="comic-caption" class="text-xs font-mono text-zinc-400">
-      Comic from <a href="https://xkcd.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">xkcd</a>
+      Comic from <a href="https://xkcd.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-[var(--accent-blue)]">xkcd</a>
     </span>
   </div>
 </Layout>
@@ -51,8 +51,8 @@ try {
         img.alt = data.alt || data.title;
         img.title = data.alt || '';
         caption.innerHTML =
-          '<a href="https://xkcd.com/' + comicNum + '/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">#' + comicNum + ': ' + data.title + '</a>' +
-          ' — from <a href="https://xkcd.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">xkcd</a>';
+          '<a href="https://xkcd.com/' + comicNum + '/" target="_blank" rel="noopener noreferrer" class="underline hover:text-[var(--accent-blue)]">#' + comicNum + ': ' + data.title + '</a>' +
+          ' — from <a href="https://xkcd.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-[var(--accent-blue)]">xkcd</a>';
 
         /* 图片加载后重新计算居中 */
         img.onload = () => {
