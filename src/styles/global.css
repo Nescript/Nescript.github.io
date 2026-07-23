@@ -226,6 +226,12 @@
   border-radius: 50%;
 }
 
+/* Mono Font Styling */
+.font-mono,
+.font-mono * {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace !important;
+}
+
 /* Shiki Code Styling */
 .astro-code,
 .astro-code * {
