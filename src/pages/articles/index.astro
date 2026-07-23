@@ -16,7 +16,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
               href={`/articles/${post.slug}`}
               class="text-base font-medium text-blue-600 dark:text-blue-400 hover:underline font-sans"
             >
-              <span class="font-mono text-zinc-400 font-normal">[{post.data.date.toISOString().split('T')[0]}]</span>{' '}
+              <span class="text-zinc-400 font-normal">[{post.data.date.toISOString().split('T')[0]}]</span>{' '}
               {post.data.title}
             </a>
           </div>

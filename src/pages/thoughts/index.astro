@@ -16,7 +16,7 @@ const thoughts = (await getCollection('thoughts', ({ data }) => !data.draft))
               href={`/thoughts/${item.slug}`}
               class="text-base font-medium text-blue-600 dark:text-blue-400 hover:underline font-sans"
             >
-              <span class="font-mono text-zinc-400 font-normal">[{item.data.date.toISOString().split('T')[0]}]</span>{' '}
+              <span class="text-zinc-400 font-normal">[{item.data.date.toISOString().split('T')[0]}]</span>{' '}
               {item.data.title}
             </a>
           </div>
