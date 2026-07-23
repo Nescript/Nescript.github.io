@@ -260,15 +260,21 @@
   margin: 1.5rem 0;
   width: 100%;
   overflow-x: auto;
-  background-color: var(--shiki-light-bg) !important;
+  background-color: var(--code-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+.astro-code span {
+  color: var(--text-primary);
 }
 
 html.dark .astro-code {
-  background-color: var(--shiki-dark-bg) !important;
+  background-color: var(--code-bg) !important;
+  color: var(--text-primary) !important;
 }
 
 html.dark .astro-code span {
-  color: var(--shiki-dark) !important;
+  color: var(--text-primary);
 }
 
 /* Prose Markdown Post & Heading Styling Adjustments */
