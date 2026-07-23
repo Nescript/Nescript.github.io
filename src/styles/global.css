@@ -319,6 +319,20 @@
   font-style: italic;
 }
 
+/* 4. Print Photo Tone (图片印刷融合滤镜) */
+.prose img,
+#comic-img {
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  filter: sepia(0.06) contrast(0.97) saturate(0.94);
+  transition: filter 0.3s ease;
+}
+
+.prose img:hover,
+#comic-img:hover {
+  filter: sepia(0) contrast(1) saturate(1);
+}
+
 /* KaTeX custom styling */
 .katex-display {
   margin: 1.5rem 0;
