@@ -282,12 +282,54 @@
 }
 
 .prose p, .prose li {
-  font-size: 0.85rem; /* ~15.3px */
-  line-height: 1.7;
+  font-size: 0.88rem;
+  line-height: 1.82;
+  letter-spacing: 0.005em;
 }
 
 .prose code {
   font-size: 0.78rem;
+}
+
+/* Editorial Typography */
+
+/* 1. Drop Cap (首字下沉) */
+.prose > p:first-of-type::first-letter {
+  font-size: 3.2em;
+  float: left;
+  line-height: 0.85;
+  margin-top: 0.08em;
+  margin-right: 0.15em;
+  margin-bottom: -0.05em;
+  font-family: 'EB Garamond', 'Noto Serif SC', serif !important;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* 2. Section Dividers (发丝虚线/实线) */
+.prose hr {
+  border: none;
+  border-top: 1px dashed var(--border-color);
+  margin: 2.5rem 0;
+}
+
+/* 3. Blockquotes & Image Captions */
+.prose blockquote {
+  border-left: 2px solid var(--border-color);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 1.5rem 0;
+}
+
+.prose figcaption, .prose img + em {
+  display: block;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
 }
 
 /* KaTeX custom styling */
