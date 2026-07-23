@@ -14,14 +14,14 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           <div>
             <a
               href={`/articles/${post.slug}`}
-              class="text-base font-medium text-[var(--accent-blue)] hover:underline font-sans"
+              class="text-base font-medium text-[var(--accent-blue)] hover:underline"
             >
               <span class="text-zinc-400 font-normal">[{post.data.date.toISOString().split('T')[0]}]</span>{' '}
               {post.data.title}
             </a>
           </div>
           {post.data.description && (
-            <p class="text-sm text-zinc-600 dark:text-zinc-400 font-serif leading-relaxed">
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               {post.data.description}
             </p>
           )}

@@ -11,26 +11,26 @@ const contactInfo = {
 
 <Layout title="Contact — Nescript" description="Contact details and profiles for Nescript.">
   <div class="space-y-6 w-full max-w-prose">
-    <div class="space-y-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 font-serif">
+    <div class="space-y-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
       <p>
         Feel free to reach out.
       </p>
 
-      <div class="pt-2 space-y-3 font-sans">
+      <div class="pt-2 space-y-3">
         <!-- Email Item -->
         <div class="flex items-center justify-between py-2 border-b border-[var(--border-color)]">
-          <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider">Email</span>
+          <span class="text-xs text-zinc-400 uppercase tracking-wider">Email</span>
           <div class="flex items-center gap-3">
             <a
               href={`mailto:${contactInfo.email}`}
-              class="text-sm font-mono text-[var(--accent-blue)] hover:underline"
+              class="text-sm text-[var(--accent-blue)] hover:underline"
             >
               {contactInfo.email}
             </a>
             <button
               id="copy-email-btn"
               data-email={contactInfo.email}
-              class="px-2 py-0.5 text-xs font-mono rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+              class="px-2 py-0.5 text-xs rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
             >
               Copy
             </button>
@@ -39,12 +39,12 @@ const contactInfo = {
 
         <!-- GitHub Item -->
         <div class="flex items-center justify-between py-2 border-b border-[var(--border-color)]">
-          <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider">GitHub</span>
+          <span class="text-xs text-zinc-400 uppercase tracking-wider">GitHub</span>
           <a
             href={contactInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm font-mono text-[var(--accent-blue)] hover:underline flex items-center gap-1"
+            class="text-sm text-[var(--accent-blue)] hover:underline flex items-center gap-1"
           >
             <span>@{contactInfo.githubUser}</span>
           </a>
@@ -52,8 +52,8 @@ const contactInfo = {
 
         <!-- Location Item -->
         <div class="flex items-center justify-between py-2 border-b border-[var(--border-color)]">
-          <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider">Location</span>
-          <span class="text-sm font-mono text-zinc-600 dark:text-zinc-400">{contactInfo.location}</span>
+          <span class="text-xs text-zinc-400 uppercase tracking-wider">Location</span>
+          <span class="text-sm text-zinc-600 dark:text-zinc-400">{contactInfo.location}</span>
         </div>
       </div>
     </div>

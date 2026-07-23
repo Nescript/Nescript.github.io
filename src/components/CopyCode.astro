@@ -2,37 +2,71 @@
 ---
 
 <script>
+  function detectLanguage(pre) {
+    const code = pre.querySelector('code');
+    if (!code) return '';
+
+    // Shiki / markdown-it usually add a "language-xxx" class
+    const langClass = Array.from(code.classList).find((c) => c.startsWith('language-'));
+    if (langClass) return langClass.replace('language-', '');
+
+    // Fallback to data-language attribute if present
+    const dataLang = pre.getAttribute('data-language') || code.getAttribute('data-language');
+    if (dataLang) return dataLang;
+
+    return '';
+  }
+
   function setupCopyButtons() {
     const codeBlocks = document.querySelectorAll('pre');
 
     codeBlocks.forEach((codeBlock) => {
-      // Check if button already attached
+      // Skip if already processed or if it belongs to KaTeX
       if (codeBlock.querySelector('.copy-code-button')) return;
+      if (codeBlock.closest('.katex-display')) return;
 
       const container = document.createElement('div');
-      container.className = 'relative group/code';
+      container.className = 'code-block-wrapper relative group/code';
 
-      // Insert wrapper
       codeBlock.parentNode?.insertBefore(container, codeBlock);
       container.appendChild(codeBlock);
 
+      // Language label
+      const language = detectLanguage(codeBlock);
+      if (language) {
+        const langLabel = document.createElement('span');
+        langLabel.className = 'code-language-label';
+        langLabel.textContent = language;
+        container.appendChild(langLabel);
+      }
+
       const copyBtn = document.createElement('button');
-      copyBtn.className = 'copy-code-button absolute top-3 right-3 px-2 py-1 text-xs font-mono rounded bg-zinc-200/80 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 opacity-0 group-hover/code:opacity-100 transition-all duration-200 hover:scale-105';
+      copyBtn.className = 'copy-code-button';
       copyBtn.innerText = 'Copy';
       copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
 
+      let resetTimeout;
+
       copyBtn.addEventListener('click', async () => {
+        clearTimeout(resetTimeout);
         const codeText = codeBlock.querySelector('code')?.innerText || codeBlock.innerText;
         try {
           await navigator.clipboard.writeText(codeText);
-          copyBtn.innerText = 'Copied!';
-          copyBtn.classList.add('bg-emerald-500', 'text-white');
-          setTimeout(() => {
+          copyBtn.innerText = 'Copied';
+          copyBtn.classList.remove('is-failed');
+          copyBtn.classList.add('is-copied');
+          resetTimeout = setTimeout(() => {
             copyBtn.innerText = 'Copy';
-            copyBtn.classList.remove('bg-emerald-500', 'text-white');
+            copyBtn.classList.remove('is-copied');
           }, 2000);
         } catch (err) {
           copyBtn.innerText = 'Failed';
+          copyBtn.classList.remove('is-copied');
+          copyBtn.classList.add('is-failed');
+          resetTimeout = setTimeout(() => {
+            copyBtn.innerText = 'Copy';
+            copyBtn.classList.remove('is-failed');
+          }, 2000);
         }
       });
 

@@ -2,6 +2,8 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import letterpressLight from './src/styles/themes/letterpress-light.json';
+import letterpressDark from './src/styles/themes/letterpress-dark.json';
 
 export default defineConfig({
   site: 'https://nescript.github.io',
@@ -13,9 +15,9 @@ export default defineConfig({
   ],
   markdown: {
     shikiConfig: {
-      experimentalThemes: {
-        light: 'one-light',
-        dark: 'github-dark-dimmed',
+      themes: {
+        light: letterpressLight,
+        dark: letterpressDark,
       },
       wrap: true,
     },

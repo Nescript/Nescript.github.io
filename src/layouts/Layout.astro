@@ -97,6 +97,14 @@ const navItems = [
       </div>
     </div>
 
+    <!-- KaTeX class safelist: keeps these generated classes from being purged. -->
+    <div style="display:none" aria-hidden="true">
+      <span class="mord mathnormal"></span>
+      <span class="mord text"></span>
+      <span class="mathrm"></span>
+      <span class="textrm"></span>
+    </div>
+
     <script>
       function updateSidebarState() {
         const pathname = window.location.pathname;

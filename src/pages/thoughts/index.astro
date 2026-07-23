@@ -14,7 +14,7 @@ const thoughts = (await getCollection('thoughts', ({ data }) => !data.draft))
           <div>
             <a
               href={`/thoughts/${item.slug}`}
-              class="text-base font-medium text-[var(--accent-blue)] hover:underline font-sans"
+              class="text-base font-medium text-[var(--accent-blue)] hover:underline"
             >
               <span class="text-zinc-400 font-normal">[{item.data.date.toISOString().split('T')[0]}]</span>{' '}
               {item.data.title}
