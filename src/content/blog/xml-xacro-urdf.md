@@ -1,7 +1,7 @@
 ---
-title: "从学习XML开始编写xacro和urdf"
+title: "从学习 XML 开始编写 xacro 和 URDF"
 date: 2026-01-08
-description: "ROS 中 URDF 机器人描述文件、Xacro 宏定义、XML 语法基础与 Gazebo 仿真配置全指南。"
+description: "XML 语法基础、URDF 机器人描述文件、xacro 宏定义与 Gazebo 仿真配置。"
 draft: false
 ---
 

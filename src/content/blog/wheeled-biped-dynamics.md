@@ -1,7 +1,7 @@
 ---
 title: "轮腿机器人动力学推导与建模"
 date: 2026-02-13
-description: "将轮腿机器人解耦为轮组、摆杆与机体三个部分，采用 Newton-Euler 隔离体法推导系统的非线性动力学方程与状态空间表达。"
+description: "用 Newton-Euler 法推导轮腿机器人系统的非线性动力学方程与状态空间表达。"
 tags: ["Robotics", "Control", "Dynamics", "Math"]
 ---
 
