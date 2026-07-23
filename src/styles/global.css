@@ -5,25 +5,25 @@
 
 @layer base {
   :root {
-    --bg-color: #ffffff;
-    --card-bg: #ffffff;
-    --text-primary: #333333;
-    --text-secondary: #555555;
-    --text-muted: #888888;
+    --bg-color: #faf8f5;
+    --card-bg: #faf8f5;
+    --text-primary: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #78716c;
     --accent-blue: #2563eb;
-    --border-color: #e5e5e5;
-    --code-bg: #f5f5f7;
+    --border-color: #e7e5e4;
+    --code-bg: #f2efe9;
   }
 
   html.dark {
-    --bg-color: #0c0d0e;
-    --card-bg: #141619;
-    --text-primary: #ededed;
-    --text-secondary: #a1a1aa;
-    --text-muted: #71717a;
+    --bg-color: #161513;
+    --card-bg: #1c1a17;
+    --text-primary: #e7e5e4;
+    --text-secondary: #a8a29e;
+    --text-muted: #78716c;
     --accent-blue: #60a5fa;
-    --border-color: #27272a;
-    --code-bg: #18181b;
+    --border-color: #2a2723;
+    --code-bg: #1f1d1a;
   }
 
   html {
