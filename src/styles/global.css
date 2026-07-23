@@ -293,19 +293,6 @@
 
 /* Editorial Typography */
 
-/* 1. Drop Cap (首字下沉) */
-.prose > p:first-of-type::first-letter {
-  font-size: 3.2em;
-  float: left;
-  line-height: 0.85;
-  margin-top: 0.08em;
-  margin-right: 0.15em;
-  margin-bottom: -0.05em;
-  font-family: 'EB Garamond', 'Noto Serif SC', serif !important;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
 /* 2. Section Dividers (发丝虚线/实线) */
 .prose hr {
   border: none;
