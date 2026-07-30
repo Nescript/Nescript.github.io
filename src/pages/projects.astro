@@ -3,53 +3,122 @@ import Layout from '../layouts/Layout.astro';
 
 const projects = [
   {
-    title: 'pku-compiler',
-    description: 'A PKU compiler principles practice project I am currently studying, aiming to build a compiler from SysY to RISC-V assembly. I am also exploring learning methods in the AI era through this project.',
-    link: 'https://github.com/Nescript/pku-compiler',
-    startDate: '2026-07-14',
+    title: 'rm_mcp',
+    eyebrow: 'Featured · AI tooling for robotics',
+    description:
+      'A safety-first Model Context Protocol server that lets AI agents inspect, diagnose, and assist with tuning RoboMaster ROS systems without treating a physical robot as an unrestricted shell.',
+    highlights: [
+      'Bridges ROS Noetic and ROS 2 through a Rosbridge WebSocket architecture, keeping the agent-facing protocol portable across the migration path.',
+      'Automates the tuning loop from parameter updates and signal injection to rosbag capture and PID-response analysis.',
+      'Protects real-robot operations with a four-level trust model and an expiring two-phase confirmation token.',
+    ],
+    stack: ['Python', 'FastMCP', 'ROS 1 / ROS 2', 'Rosbridge', 'pytest'],
+    meta: '25 MCP tools · 187 end-to-end protocol tests',
+    link: 'https://github.com/Nescript/rm_mcp',
   },
   {
-    title: 'Bipedal wheel controller (refactor branch)',
-    description: 'An exploration of software architecture: I decoupled the core of the wheel-legged controller from ROS to make future migration easier.',
+    title: 'Bipedal wheel controller',
+    eyebrow: 'Featured · Software architecture',
+    description:
+      'A refactor of a wheel-legged robot controller that separates the control core from ROS-specific integration, making the system easier to test and migrate.',
+    highlights: [
+      'Defined clearer boundaries between robot-control logic and middleware adapters.',
+      'Reduced coupling to ROS so future simulation or platform migration has a smaller surface area.',
+      'Used the refactor as an engineering exercise in maintainable controller architecture.',
+    ],
+    stack: ['C++', 'ROS', 'Robot control', 'Software architecture'],
+    meta: 'Refactor branch · In active development',
     link: 'https://github.com/Nescript/rm_controllers/tree/refactor',
-    startDate: '2026-06-15',
-  },
-  {
-    title: 'Balance controller',
-    description: 'My balance car 101, implementing both cascaded PID control and LQR control.',
-    link: 'https://github.com/Nescript/balance_car_ws',
-    startDate: '2026-01-25',
   },
   {
     title: 'Sentry chassis controller',
-    description: 'My ROS 101. I implemented control for a steering-wheel chassis, including forward and inverse kinematics, dynamics, and power calculation and control.',
+    eyebrow: 'Robotics · Motion control',
+    description:
+      'A ROS controller for a steering-wheel sentry chassis, covering the path from chassis kinematics to dynamics-aware power calculation and control.',
+    highlights: [
+      'Implemented forward and inverse kinematics for coordinated steering-wheel motion.',
+      'Connected motion control with dynamics and power-related constraints.',
+      'Built hands-on experience with controller integration in a ROS robotics stack.',
+    ],
+    stack: ['C++', 'ROS', 'Kinematics', 'Dynamics', 'Power control'],
+    meta: 'Controller implementation',
     link: 'https://github.com/Nescript/sentry_chassis_controller',
-    startDate: '2025-11-25',
+  },
+  {
+    title: 'Balance controller',
+    eyebrow: 'Controls · Embedded robotics',
+    description:
+      'A balancing-car control project that compares cascaded PID and LQR approaches for closed-loop stabilization.',
+    highlights: [
+      'Implemented both cascaded PID and LQR control strategies.',
+      'Used one physical control problem to build intuition for classical and state-space control.',
+      'Created a focused foundation for later wheel-legged control work.',
+    ],
+    stack: ['C++', 'PID', 'LQR', 'Control theory'],
+    meta: 'Control-system study',
+    link: 'https://github.com/Nescript/balance_car_ws',
+  },
+  {
+    title: 'PKU compiler',
+    eyebrow: 'Systems · In progress',
+    description:
+      'A compiler-principles implementation that translates SysY programs into RISC-V assembly, built to deepen systems-level understanding through practice.',
+    highlights: [
+      'Explores the compiler pipeline from a source language to RISC-V output.',
+      'Serves as a deliberate systems-programming learning project alongside robotics work.',
+    ],
+    stack: ['C++', 'Compilers', 'SysY', 'RISC-V'],
+    meta: 'In active development',
+    link: 'https://github.com/Nescript/pku-compiler',
   },
 ];
 ---
 
-<Layout title="Projects — Nescript" description="Projects and engineering practices by Nescript.">
-  <div class="space-y-6 w-full max-w-prose">
+<Layout title="Projects — Nescript" description="Selected robotics, systems, and AI tooling projects by Nescript.">
+  <section class="w-full max-w-3xl space-y-8" aria-labelledby="projects-heading">
+    <header class="space-y-3">
+      <p class="text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">Selected work</p>
+      <h2 id="projects-heading" class="text-3xl sm:text-4xl font-medium tracking-tight">Projects that show how I build.</h2>
+      <p class="max-w-2xl text-base leading-relaxed text-[var(--text-secondary)]">
+        Ordered by relevance to robotics and software-engineering roles. Each project focuses on a concrete engineering problem, the decisions behind it, and the systems I built.
+      </p>
+    </header>
+
     <div class="space-y-5">
-      {projects.map((project) => (
-        <div class="space-y-1.5 border-b border-[var(--border-color)] pb-4">
-          <div>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-base font-semibold text-[var(--accent-blue)] hover:underline flex items-center gap-1"
-            >
-              <span class="text-zinc-400 font-normal">[{project.startDate}]</span>{' '}
-              <span>{project.title}</span>
-            </a>
+      {projects.map((project, index) => (
+        <article class="border border-[var(--border-color)] bg-[var(--card-bg)] p-5 sm:p-6 space-y-4 transition-colors hover:border-[var(--text-muted)]">
+          <div class="flex items-start justify-between gap-5">
+            <div class="space-y-2">
+              <p class="text-xs uppercase tracking-[0.13em] text-[var(--text-muted)]">{String(index + 1).padStart(2, '0')} · {project.eyebrow}</p>
+              <h3 class="text-xl sm:text-2xl font-semibold leading-tight">{project.title}</h3>
+            </div>
+            {index < 2 && <span class="shrink-0 border border-[var(--border-color)] px-2 py-1 text-[0.65rem] uppercase tracking-wider text-[var(--text-secondary)]">Priority</span>}
           </div>
-          <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            {project.description}
-          </p>
-        </div>
+
+          <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">{project.description}</p>
+
+          <ul class="space-y-2 text-sm leading-relaxed text-[var(--text-secondary)]">
+            {project.highlights.map((highlight) => (
+              <li class="flex gap-2">
+                <span aria-hidden="true" class="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-[var(--accent-blue)]"></span>
+                <span>{highlight}</span>
+              </li>
+            ))}
+          </ul>
+
+          <footer class="flex flex-col gap-3 border-t border-[var(--border-color)] pt-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="space-y-1">
+              <p class="text-xs text-[var(--text-muted)]">{project.meta}</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-1" aria-label="Technologies">
+                {project.stack.map((item) => <span class="text-xs text-[var(--text-secondary)]">{item}</span>)}
+              </div>
+            </div>
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-[var(--accent-blue)] hover:underline whitespace-nowrap">
+              View source <span aria-hidden="true">↗</span>
+            </a>
+          </footer>
+        </article>
       ))}
     </div>
-  </div>
+  </section>
 </Layout>
